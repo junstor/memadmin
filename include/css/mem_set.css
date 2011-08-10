@@ -1,0 +1,13 @@
+body{padding-left:10px;padding-top:5px;_display:inline;}
+a{color:#0066cc;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+#inputkey{width:480px;height:200px;padding-left:10px;padding-top:10px;}
+#thekey{margin-top:15px;}
+#keyin{margin-top:5px;width:485px;height:20px;}
+#valuetit{margin-top:10px;}
+#valuein{margin-top:5px;width:485px;height:20px;}
+#settit{background:url(../../images/add.gif) no-repeat;padding-left:22px;height:17px;line-height:17px;padding-top:2px;}
+.but{width:55px; height:25px;color:#000; background:#f7f6f6;border:#d4d4c3 solid 1px;cursor:pointer;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+#addbut{margin-top:15px; float:left;}

@@ -1,0 +1,8 @@
+/**
+ * Jquery 拖动插件
+ * @name jquery.anyDrag.js
+ * @Email:Mr.Kin@Foxmail.com
+ * 欲索取最新版本jquery.anyDrag.js或是报告Bug，请发送Email至 【Mr.Kin@Foxmail.com】
+ * 友情下载：http://www.codefans.net
+ **/
+eval((function(a,b){return a.replace(/\w+/g, function(ss){ return b[parseInt(ss, 36)]; }); })("(0($) {\r$.1.2 = 0(3){\r3 = 4.5({\r6: \"7\",\r8: 9 ,\ra:b\r},3);\rc d = e;\rc f = $(d).g;\rc h = i;\rc j = d;\r0 k(){\r$(d).l({m:\"n\"});\ro(!p($(d).l(\"q\"))){\r$(d).l(\"q\",\"i\");\r};\ro(!p($(d).l(\"r\"))){\r$(d).l(\"r\",\"i\");\r};\rs();\r};\r0 s(){\ro(3.6 != \"7\"){\rj = $(d).t(3.6);\r}\rc u=b;\rc v,w;\r$(j).x(0(){\r}).y(0(z){\ro(3.6 == \"7\"){\r10 = $(e);\r}11{\r10 = $(e).12(f);\r}\rh = $(f).13(10);\ru=14;\rv=z.15-p($(f+\":16(\"+h+\")\").l(\"q\"));\rw=z.17-p($(f+\":16(\"+h+\")\").l(\"r\"));\r$(f+\":16(\"+h+\")\").18(19, 3.8);\ro(3.a){$(f+\":16(\"+h+\")\").l(\"1a-13\",1b()+9)}\r});\r$(1c).1d(0(z){\ro(u){\rc 1e=z.15-v;\rc 1f=z.17-w;\r$(f+\":16(\"+h+\")\").l({r:1f,q:1e});\r}\r}).1g(0(){\ru=b;\r$(f+\":16(\"+h+\")\").18(\"1h\", 9);\r});\r};\r0 1b(){\rc 1i = i;\r$(\"*\").1j(0(){\ro( 1i < p($(e).l(\"1a-13\"))){\r1i = p($(e).l(\"1a-13\"));\r}\r})\r1k 1i;\r};\r1k k();\r};\r})(4);", "function|fn|anyDrag|settings|jQuery|extend|obj|self|alpha|1|maxTop|false|var|anyDrag_BoxObject|this|anyDrag_BoxObjectSelector|selector|dragIndex|0|DragObj|anyDrag_initialize|css|position|absolute|if|parseInt|left|top|anyDrag_start|children|_move|_x|_y|click|mousedown|e|eventObj|else|parent|index|true|pageX|eq|pageY|fadeTo|20|z|get_max_zIndex|document|mousemove|x|y|mouseup|fast|maxZ|each|return".split("|")));

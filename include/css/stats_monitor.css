@@ -1,0 +1,29 @@
+html{_overflow-x: hidden;}
+body{padding-left:10px;padding-top:5px;_display:inline;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+#checktit{height:23px; line-height:23px; background:url(../../images/moni.gif) no-repeat; padding-left:30px;margin-top:20px;clear:both;}
+.checktable{border:0;background:#d0cfcf; min-width:600px;width:600px;}
+.checktable th{background:#ecebeb;height:20px;font-weight:normal;}
+.checktable td{background:#FFF;height:20px;padding-left:10px; color:#333;}
+#statustit span{margin-right:10px;}
+#checktableframe1{margin-top:20px;}
+.conpsc{*position:relative;*top:-15px;}
+.conpchectrl{*position:relative;*top:-15px;}
+.checkmo{text-align:center;}
+#confail{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/confail.gif) no-repeat; padding-left:45px; clear:both;}
+#confail a{margin-left:10px;}
+#nostats{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/nosettings.gif) no-repeat; padding-left:45px;clear:both;}
+#checkctrl{margin-top:20px;margin-left:10px; float:left;}
+#checkctrl a{margin-right:10px; color:#0066cc;}
+#gomonitor{float:left;margin-left:380px;_margin-left:165px;}
+.conpgomonitor{*margin-top:-15px;}
+*+html #gomonitor{margin-left:190px;}
+.but{width:100px; height:38px; color:#000; background:#f7f6f6;border:#d4d4c3 solid 1px;margin-top:20px;cursor:pointer;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+#footer{height:50px;clear:both;}
+#conpstatustit{margin-bottom:10px;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;float:left;margin-bottom:15px;margin-top:20px;}
+#scons{width:200px;}
+#conpstatustit span{margin-right:10px;}
+#statustit{margin-bottom:10px;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;margin-top:20px;}
+#conpstatconselect{float:left;margin-top:17px;margin-left:30px;}

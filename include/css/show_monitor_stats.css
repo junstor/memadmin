@@ -1,0 +1,31 @@
+html{_overflow-x: hidden;}
+body{padding-left:10px;padding-top:5px;_display:inline;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+#statustit{margin-bottom:10px;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;margin-top:20px; float:left;}
+#statustit span{margin-right:10px;}
+a{color:#0066cc; text-decoration:none;}
+a:hover{text-decoration:underline; color:#F00;}
+#confail{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/confail.gif) no-repeat; padding-left:45px; clear:both;}
+#confail a{margin-left:10px;}
+#nostats{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/nosettings.gif) no-repeat; padding-left:45px;clear:both;}
+#debug{margin-top:25px;margin-bottom:10px;}
+#webrunmem{margin-left:30px;}
+.monitordiv{background:#ffffff;width:250px;height:auto;border:#d0cfcf 1px solid;}
+.moarg{height:25px; font-size:14px;line-height:25px; text-align:center; background:#fdf8cc;cursor:move;border-bottom:#d0cfcf 1px solid;}
+.modes{text-align:left;margin-top:10px;padding-left:10px;padding-right:10px;}
+.movalue{margin-top:10px;margin-bottom:10px;padding-left:5px;padding-right:5px; text-align:center;}
+.movaluespan{color:#F30; font-size:18px;}
+#monitorctrl{float:right;margin-top:20px;margin-right:40px;}
+#resetlayout{float:left;_margin-top:5px;}
+#autofresh{float:left;margin-right:20px;margin-top:-5px;}
+#footer{height:50px;clear:both;}
+#afs{width:40px;margin-right:5px;_margin-top:5px;}
+#afstit{margin-right:10px;}
+#startaf{margin-left:10px;_margin-top:5px;}
+.but{width:55px; height:25px;color:#000; background:#fbf7d9;border:#d4d4c3 solid 1px;cursor:pointer;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+#lasttime{margin-right:10px; color:#F00; display:none;}
+#lastaftit{margin-right:10px;display:none;}
+#repaf{display:none;margin-right:10px;}
+#ausrep{color:#F00;margin-right:5px;}

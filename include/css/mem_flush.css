@@ -1,0 +1,8 @@
+body{padding-left:10px;padding-top:5px;}
+a{color:#0066cc;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+.but{width:100px; height:30px;color:#000; background:#f7f6f6;border:#d4d4c3 solid 1px;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+#flushnot{color:#F00;margin-top:20px;}
+#flushbut{margin-top:20px;}

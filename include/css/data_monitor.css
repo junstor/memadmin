@@ -1,0 +1,25 @@
+html{_overflow-x: hidden;}
+body{padding-left:10px;padding-top:5px;_display:inline;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+#confail{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/confail.gif) no-repeat; padding-left:45px; clear:both;}
+#confail a{margin-left:10px;}
+#noitems{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/nosettings.gif) no-repeat; padding-left:45px;clear:both;}
+#statustit{padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;margin-top:20px;}
+#statustit span{margin-right:10px;}
+#conpchecktit{height:23px;line-height:23px; background:url(../../images/moni.gif) no-repeat; padding-left:30px;clear:both; margin-top:50px;}
+#checktit{height:23px;line-height:23px; background:url(../../images/moni.gif) no-repeat; padding-left:30px;clear:both; margin-top:20px;}
+#gomonitor{float:left;margin-left:500px;_margin-left:166px;}
+*+html #gomonitor{margin-left:250px;}
+.but{width:100px; height:38px; color:#000; background:#f7f6f6;border:#d4d4c3 solid 1px;margin-top:20px;cursor:pointer;cursor:pointer;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+.checktable{border:0;background:#d0cfcf; min-width:600px;width:600px;}
+.checktable th{background:#ecebeb;height:20px;font-weight:normal;}
+.checktable td{background:#FFF;height:20px;padding-left:10px; color:#333;}
+#checktableframe1{margin-top:20px;}
+#footer{height:50px;clear:both;}
+.check_span td{background:#fdf8cc; padding-left:10px;}
+.checktd{text-align:center;}
+#conpstatustit{margin-bottom:10px; float:left;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;margin-top:20px;}
+#conpstatustit span{margin-right:10px;}
+#conpstatconselect{float:left;margin-left:50px;margin-top:17px;}

@@ -1,0 +1,19 @@
+body{padding-left:10px;padding-top:5px;}
+a{color:#0066cc;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+.but{width:55px; height:25px;color:#000; background:#f7f6f6;border:#d4d4c3 solid 1px;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+#keycount{clear:both;margin-right:20px;width:630px;height:150px;padding-left:10px;margin-top:20px;}
+#counttit{background:url(../../images/count.gif) no-repeat;padding-left:22px;height:17px;line-height:17px;padding-top:2px;}
+#incr{margin-top:20px;clear:both;}
+#incrkeytit{margin-top:10px;margin-bottom:5px;float:left;}
+#incrvaluetit{margin-top:10px;margin-bottom:5px;float:left;margin-left:15px;}
+#incrbut{float:left;margin-top:6px;margin-left:10px;}
+#incrtit,#decrtit{color:#000; font-weight:bold;}
+#decrtit{_margin-bottom:20px;}
+#decr{clear:both; position:relative; top:20px;}
+#decrkeytit{margin-top:10px;margin-bottom:5px;float:left;}
+#decrvaluetit{margin-top:10px;margin-bottom:5px;float:left;margin-left:15px;}
+#decrbut{float:left;margin-top:6px;margin-left:10px;}
+.countinput{width:150px;height:15px;float:left;margin-top:8px;margin-left:10px;}

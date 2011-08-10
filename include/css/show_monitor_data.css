@@ -1,0 +1,38 @@
+html{_overflow-x: hidden;}
+body{padding-left:10px;padding-top:5px;_display:inline;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+#statustit{margin-bottom:10px;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;margin-top:20px; float:left;}
+#statustit span{margin-right:10px;}
+a{color:#0066cc; text-decoration:none;}
+a:hover{text-decoration:underline; color:#F00;}
+#confail{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/confail.gif) no-repeat; padding-left:45px; clear:both;}
+#confail a{margin-left:10px;}
+#nostats{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/nosettings.gif) no-repeat; padding-left:45px;clear:both;}
+#debug{margin-top:25px;margin-bottom:10px;}
+#webrunmem{margin-left:30px;}
+#drag_1{width:600px;}
+#drag_2{width:600px;}
+.monitordiv{background:#ffffff;height:auto;border-top:#d0cfcf 1px solid;}
+.moarg{height:25px; font-size:14px;line-height:25px; text-align:center; background:#fdf8cc;cursor:move;border-left:#d0cfcf 1px solid;border-right:#d0cfcf 1px solid;}
+#monitorctrl{float:right;margin-top:20px;margin-right:40px;}
+#resetlayout{float:left;_margin-top:5px;}
+#autofresh{float:left;margin-right:20px;margin-top:-5px;}
+#footer{height:50px;clear:both;width:100px;}
+#afs{width:40px;margin-right:5px;_margin-top:5px;}
+#afstit{margin-right:10px;}
+#startaf{margin-left:10px;_margin-top:5px;}
+.but{width:55px; height:25px;color:#000; background:#fbf7d9;border:#d4d4c3 solid 1px;cursor:pointer;}
+.but:hover{ cursor:pointer;}
+.but:active{padding:2px 0 0 2px;}
+#lasttime{margin-right:10px; color:#F00; display:none;}
+#lastaftit{margin-right:10px;display:none;}
+#repaf{display:none;margin-right:10px;}
+#ausrep{color:#F00;margin-right:5px;}
+.checktable{border:0;background:#d0cfcf; min-width:600px;*width:600px;}
+.checktable th{background:#ecebeb;height:20px;font-weight:normal;}
+.checktable td{background:#FFF;height:20px;padding-left:10px; color:#333;}
+.glospan{color:#F00; font-size:14px;}
+#slabs{width:200px;_margin-top:3px;}
+.seltit{margin-right:10px;}
+.selectslabid{height:30px;line-height:30px;border-top:#d0cfcf 1px solid;border-left:#d0cfcf 1px solid;border-right:#d0cfcf 1px solid; text-align:right;padding-right:10px;}
+#lostmemtd{text-align:center;}

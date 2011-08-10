@@ -1,0 +1,22 @@
+body{padding-left:10px;padding-top:5px;_display:inline;}
+#top{border-bottom:#CCC solid 1px;line-height:25px;}
+#contit{margin-top:20px;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat;}
+#condata{margin-top:20px;}
+#datatable{border:0;background:#d0cfcf;}
+#datatable th{background:#ecebeb;height:20px; font-weight:normal;}
+#datatable td{background:#FFF;height:20px;padding-left:10px; color:#333;}
+#concode{margin-top:10px;}
+#codetable{border:0;background:#d0cfcf;}
+#codetable th{background:#ecebeb;height:20px; font-weight:normal;}
+#codetable td{background:#FFF;height:40px;padding-left:10px; color:#333;font-size:14px;}
+#footer{position:absolute;bottom:0px;}
+#conpcon{margin-top:20px;}
+#conpcontit{width:592px;line-height:25px;height:25px;border:#d0cfcf solid 1px;border-bottom:none;padding:3px;margin-top:20px; text-align:center; background:#ecebeb;}
+#serverlist{padding-top:10px;padding-bottom:10px;}
+.conpcontable{border:0;background:#d0cfcf;margin-top:20px;}
+.conpcontable th{background:#fbf4c0;height:20px; font-weight:normal;}
+.conpcontable td{background:#fffce4;height:20px;padding-left:10px; color:#333;}
+.bigred{color:#F00;}
+#debug{margin-top:25px;margin-bottom:10px;position:relative;*bottom:10px;}
+#webrunmem{margin-left:30px;}
+
