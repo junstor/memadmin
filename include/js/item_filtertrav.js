@@ -10,6 +10,9 @@ $(function() {
     $("#showdemobut").click(function() {
         $("#showdemo").css('position', 'absolute');
         $("#showdemo").show();
+	if($(document.body).width()<=935) {
+		$("#showdemo").css({'top':'250px','left':'450px'});
+	}
     });
     $("#closedemo").click(function() {
         $("#showdemo").hide();
