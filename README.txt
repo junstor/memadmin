@@ -1,7 +1,7 @@
 
  MemAdmin v 1.0.2
  
- 2011/8/10
+ 2011/8/18
 
  Installation :
 
@@ -12,3 +12,12 @@
 
 
  BUGs Report : junstor@gmail.com
+
+ Changelog : 
+
+ v1.0.1 -- 2011/8/10
+   * Basic Version
+
+ v1.0.2 -- 2011/8/18
+   * Add stripslashes in GetList.php
+   * The regular expression demo div fit the body width
