@@ -52,5 +52,5 @@ function set_font($t) {
 		} 
 	} 
 } 
-$config['version'] = "1.0.1"; // MemAdmin version
+$config['version'] = "1.0.2"; // MemAdmin version
 ?>
