@@ -1,5 +1,5 @@
 
- MemAdmin v 1.0.1
+ MemAdmin v 1.0.2
  
  2011/8/10
 
