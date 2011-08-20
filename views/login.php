@@ -29,6 +29,7 @@ global $config;
       <p class="l_in_p"><span>Language：</span>
         <select id="selectLang">
           <option value="zh-cn">简体中文</option>
+          <option value="en-us">English</option>
         </select>
       </p>
       <p>

@@ -27,6 +27,14 @@ var type='<?php echo $type;?>',num=0;
 <style type="text/css">
 body{<?php set_font('body');?>}
 #leftmenu{<?php set_font('menu');?>}
+<?php
+if($_SESSION["MADM_SESSION_KEY"]['lang']=='en-us') {
+	echo "#listset{margin-right:5px;}";
+	echo "#showlist{_margin-top:22px;*margin-left:-251px;}";
+	echo "*+html #showlist{margin-left:-251px;}";
+	echo "#logout{*margin-top:-2px;}";
+}
+?>
 </style>
 </head>
 <body>

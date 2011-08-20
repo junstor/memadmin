@@ -25,6 +25,12 @@ body {<?php set_font('body');?>}
 #addtype {<?php set_font('h1');?>}
 #listm {float:right;margin-right:10px;color:#0066cc;_margin-top:-28px;_margin-right:5px;<?php set_font('body');?>}
 #logout {float:right;font-weight:normal;margin-right:30px;_margin-top:-15px;<?php set_font('body');?>}
+<?php
+if($_SESSION["MADM_SESSION_KEY"]['lang']=='en-us') {
+	echo "#showconmenu{margin-left:10px;*margin-left:-74px;}";
+	echo ".del_conc,.del_concp{margin-left:290px;}";
+}
+?>
 </style>
 <script language="javascript">
 /*  some words in js file for different languages  */
@@ -122,7 +128,7 @@ var con_loadnotice="<?php echo $langs['con_loadnotice'];?>";
         <label for="addcp">&nbsp;<?php echo $langs['set_con_addconpool'];?></label>
       </p>
       <div id="addcon_m">
-        <div class="mtitle"> <?php echo $langs['help_addcon'];?>&nbsp;&nbsp;<a href="#"><?php echo $langs['help'];?></a> </div>
+        <div class="mtitle"> <?php echo $langs['help_addcon'];?></div>
         <div id="addcinput">
           <p id="addcname"><?php echo $langs['con_name'];?>：
             <input id="conname" name="conname" type="text" value="<?php echo $langs['con_name_def'];?>"/>
@@ -148,14 +154,14 @@ var con_loadnotice="<?php echo $langs['con_loadnotice'];?>";
         </div>
       </div>
       <div id="addconpool_m">
-        <div class="mtitle"> <?php echo $langs['help_addcp'];?>&nbsp;&nbsp;<a href="#"><?php echo $langs['help'];?></a> </div>
+        <div class="mtitle"> <?php echo $langs['help_addcp'];?></div>
         <div id="addcpinput">
           <p id="addcpname"><?php echo $langs['conp_name'];?>：
             <input id="conpname" name="conpname" type="text" value="<?php echo $langs['conp_name_def'];?>"/>
           </p>
           <div id="cons"></div>
           <div id="add_new"> <a id="add_new_con" href="javascript:;"><?php echo $langs['add_new_con'];?></a> </div>
-          <input id="addconp_but" class="but" name="addconp_but" type="button" value="<?php echo $langs['con_add'];?>"/>
+          <input id="addconp_but" class="but" name="addconp_but" type="button" value="< <?php echo $langs['con_add'];?>"/>
         </div>
       </div>
     </div>

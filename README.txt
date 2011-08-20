@@ -1,7 +1,7 @@
 
- MemAdmin v 1.0.2
+ MemAdmin v 1.0.3
  
- 2011/8/18
+ 2011/8/20
 
  Installation :
 
@@ -21,3 +21,7 @@
  v1.0.2 -- 2011/8/18
    * Add stripslashes in GetList.php
    * The regular expression demo div fit the body width
+   
+ v1.0.3 -- 2011/8/20  
+   * Compatible with memcached v1.4.7
+   * Add English support
