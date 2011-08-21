@@ -25,9 +25,15 @@ $thekey = str_replace("_ _rx", "\\", $thekey);
 if ($_GET['action'] == 'ser') {
 	$list = $memm -> MemGet(array($thekey));
 	if (is_array($list[0][$thekey])) {
-		echo serialize($list[0][$thekey]);
+		$tempa=array();
+		foreach($list[0][$thekey] as $k => $v) {
+			$k=htmlspecialchars($k);
+			$v=htmlspecialchars($v);
+			$tempa[$k]=$v;
+		}
+		echo serialize($tempa);
 	} else {
-		echo $list[0][$thekey];
+		echo htmlspecialchars($list[0][$thekey]);
 	} 
 } 
 if ($_GET['action'] == 'unser') {
@@ -39,16 +45,28 @@ if ($_GET['action'] == 'unser') {
 	} else {
 		$unser = @unserialize($list[0][$thekey]);
 		if (is_array($unser)) {
+			$tempa=array();
+			foreach($unser as $k => $v) {
+				$k=htmlspecialchars($k);
+				$v=htmlspecialchars($v);
+				$tempa[$k]=$v;
+			}
 			echo "<pre>";
-			print_r($unser);
+			print_r($tempa);
 			echo "</pre>";
 		} else if ($unser == false) {
 			$jsonstr = json_decode($list[0][$thekey], true);
 			if ($jsonstr == null)
 				echo "FormatFail";
 			else if (is_array($jsonstr)) {
+				$tempa=array();
+				foreach($jsonstr as $k => $v) {
+					$k=htmlspecialchars($k);
+					$v=htmlspecialchars($v);
+					$tempa[$k]=$v;
+				}
 				echo "<pre>";
-				print_r($jsonstr);
+				print_r($tempa);
 				echo "</pre>";
 			} else
 				echo "FormatFail";
