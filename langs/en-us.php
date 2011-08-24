@@ -305,6 +305,7 @@ $langs['memg_butvalue']="Get";
 $langs['memg_ser']="Serialize";
 $langs['memg_unser']="Unserialize";
 $langs['memg_tnum']="Total Num";
+$langs['memg_updateres']="Refresh";
 
 //mem_set.php
 $langs['mems_tit']="Set Command";

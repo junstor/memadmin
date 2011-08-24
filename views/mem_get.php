@@ -34,6 +34,7 @@ var unsert="<?php echo $langs['memg_unser'];?>";
 var del="<?php echo $langs['con_del'];?>";
 var valuefail="<?php echo $langs['memg_geterror'];?>";
 var loading="<?php echo $langs['itemt_loading'];?>";
+var updatetit="<?php echo $langs['memg_updateres'];?>";
 var type="<?php echo $type;?>";
 var num="<?php echo $num;?>";
 </script>

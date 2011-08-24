@@ -305,6 +305,7 @@ $langs['memg_butvalue']="查询";
 $langs['memg_ser']="序列化";
 $langs['memg_unser']="反序列化";
 $langs['memg_tnum']="记录总数";
+$langs['memg_updateres']="刷新";
 
 //mem_set.php
 $langs['mems_tit']="写入数据";

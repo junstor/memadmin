@@ -43,6 +43,7 @@ var nexpage="<?php echo $langs['itemt_nexpage'];?>";
 var pagenumno="<?php echo $langs['itemt_pagenumno'];?>";
 var thetnum="<?php echo $langs['memg_tnum'];?>";
 var pagingerr="<?php echo $langs['itemt_pagingerr'];?>";
+var updatetit="<?php echo $langs['memg_updateres'];?>";
 var type="<?php echo $type;?>";
 var num="<?php echo $num;?>";
 var getconid="<?php echo $conid;?>";
