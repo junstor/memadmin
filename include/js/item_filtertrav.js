@@ -312,7 +312,7 @@ function showpage(page) {
                               var showvalue = p[0][glo_p[kindex][0]];
 							  showvalue = htmlspecialchars(showvalue);
 							  glo_p[kindex][0]=htmlspecialchars(glo_p[kindex][0]);
-                            var strout = "<div class=\"showvalue key_" + $.md5(encodeURI(glo_p[kindex][0])) + "\"><input id=\"hideindex\" name=\"hideindex\" type=\"text\" value=\"" + kindex + "\"/><div class=\"keyandflags\"><div class=\"thekey\"><span class=\"keytit\">KEY : </span><span class=\"keycon\">" + glo_p[kindex][0] + "</span></div><div class=\"theflags\">Flags:　" + p[1][glo_p[kindex][0]] + "</div></div><div class=\"thevalue\"><span class=\"valuespan\">" + showvalue + "</span></div><div class=\"valuemenu\"><div class=\"menulist\"><span class=\"novaluet\">" + novaluetime + "：" + glo_p[kindex][1][1] + "</span><a class=\"showser t_hide\" href=\"javascript:ser('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + sert + "</a><a class=\"showunser\" href=\"javascript:unser('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + unsert + "</a>";
+                            var strout = "<div class=\"showvalue key_" + $.md5(encodeURI(glo_p[kindex][0])) + "\"><input id=\"hideindex\" name=\"hideindex\" type=\"text\" value=\"" + kindex + "\"/><div class=\"keyandflags\"><div class=\"thekey\"><span class=\"keytit\">KEY : </span><span class=\"keycon\">" + glo_p[kindex][0] + "</span></div><div class=\"theflags\">Flags:　" + p[1][glo_p[kindex][0]] + "</div></div><div class=\"thevalue\"><span class=\"valuespan\">" + showvalue + "</span></div><div class=\"valuemenu\"><div class=\"menulist\"><span class=\"novaluet\">" + novaluetime + "：" + glo_p[kindex][1][1] + "</span><a class=\"showser t_hide\" href=\"javascript:ser('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + sert + "</a><a class=\"showunser\" href=\"javascript:unser('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + unsert + "</a><a class=\"updater\" href=\"javascript:updateres('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + updatetit + "</a>";
                             if (caldel == 0) 
                               strout += "<a class=\"delkey\" href=\"javascript:delkey('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + del + "</a>";
                             else 
@@ -384,4 +384,11 @@ function htmlspecialchars(str)  {
     str = str.replace(/"/g, '&quot;');
     str = str.replace(/'/g, '&#039;');
     return str;
+}
+
+function updateres(key_md5) {
+	if($(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showser").css('display')=='none')
+		ser(key_md5);
+	else if($(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showunser").css('display')=='none')	
+		unser(key_md5);		
 }
