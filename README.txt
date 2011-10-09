@@ -1,7 +1,7 @@
 
- MemAdmin v 1.0.5
+ MemAdmin v 1.0.6
  
- 2011/8/24
+ 2011/10/9
 
  Installation :
 
@@ -14,6 +14,9 @@
  BUGs Report : junstor@gmail.com
 
  Changelog : 
+ v1.0.6 -- 2011/10/9
+   * fix two bugs
+   
  v1.0.5 -- 2011/8/24
    * Add Refresh Button
    

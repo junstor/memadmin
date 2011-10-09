@@ -24,6 +24,11 @@ $thekey = str_replace("_ _rd", "'", $data[0]['key']);
 $thekey = str_replace("_ _rx", "\\", $thekey);
 $keylist = explode(" ", $thekey);
 $list = $memm -> MemGet($keylist);
+foreach($list[1] as $key => $value) {
+	if($value==1) {
+		$list[0][$key]=serialize($list[0][$key]);
+	}
+}
 echo json_encode($list);
 
 ?>

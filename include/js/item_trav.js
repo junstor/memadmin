@@ -201,12 +201,12 @@ function showpage(page) {
                         if (glo_p[kindex] != "___   ___memadmin__deleted") {
                             if (typeof(p[0][glo_p[kindex][0]]) == 'undefined') {
                                 if (type == 'con') 
-                                  var showvalue = "<span class=\"valuefail\">" + noexist + "</span>";
+                                  var showvalue = noexist;
                                 else 
-                                  var showvalue = "<span class=\"valuefail\">" + conpnoexist + "</span>";
+                                  var showvalue = conpnoexist;
                                 caldel = 1;
                             } else if (p[0][glo_p[kindex][0]] == false) {
-                                var showvalue = "<span class=\"valuefail\">" + valuefail + "</span>";
+                                var showvalue = valuefail;
                                 caldel = 1;
                             } else 
                               var showvalue = p[0][glo_p[kindex][0]];

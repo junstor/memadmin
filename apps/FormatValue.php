@@ -32,13 +32,15 @@ if ($_GET['action'] == 'ser') {
 			$tempa[$k]=$v;
 		}
 		echo serialize($tempa);
+	} else if(gettype($list[0][$thekey])=='object') { 
+		echo serialize($list[0][$thekey]);
 	} else {
 		echo htmlspecialchars($list[0][$thekey]);
 	} 
 } 
 if ($_GET['action'] == 'unser') {
 	$list = $memm -> MemGet(array($thekey));
-	if (is_array($list[0][$thekey])) {
+	if (is_array($list[0][$thekey])||gettype($list[0][$thekey])=='object') {
 		echo "<pre>";
 		print_r($list[0][$thekey]);
 		echo "</pre>";
