@@ -1,7 +1,6 @@
-
- MemAdmin v 1.0.6
+ MemAdmin v 1.0.7
  
- 2011/10/9
+ 2011/11/8
 
  Installation :
 
@@ -14,6 +13,9 @@
  BUGs Report : junstor@gmail.com
 
  Changelog : 
+ v1.0.7 -- 2011/11/8
+   * fix one bug
+   
  v1.0.6 -- 2011/10/9
    * fix two bugs
    
@@ -33,7 +35,3 @@
    
  v1.0.1 -- 2011/8/10
    * Basic Version
-
- 
-   
-
