@@ -205,7 +205,7 @@ function showpage(page) {
                                 else 
                                   var showvalue = conpnoexist;
                                 caldel = 1;
-                            } else if (p[0][glo_p[kindex][0]] == false) {
+                            } else if (p[0][glo_p[kindex][0]] === false) {
                                 var showvalue = valuefail;
                                 caldel = 1;
                             } else 

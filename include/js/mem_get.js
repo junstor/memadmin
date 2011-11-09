@@ -22,7 +22,7 @@ $(function() {
                         else {
                             $("#showres").html("<div id=\"querytit\"><div id=\"showtit\">" + getres + "：</div><div id=\"showimp\">" + resnot + "</div></div>");
                             $.each(p[0],function(key, value) {
-                                if (value == false) 
+                                if (value === false) 
                                   var showvalue = "<span class=\"valuefail\">" + valuefail + "</span>";
                                 else 
                                   var showvalue = htmlspecialchars(value);
@@ -110,6 +110,7 @@ function formatjsons(key_md5) {
 }
 
 function htmlspecialchars(str)  {  
+    str=str.toString();
     str = str.replace(/&/g, '&amp;');
     str = str.replace(/</g, '&lt;');
     str = str.replace(/>/g, '&gt;');
