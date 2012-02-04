@@ -246,6 +246,36 @@ $(function() {
                                             sliceColors: ['#2886dd', '#fb3c4e']
                                         });
                                     }
+                                    if (key == 'touch') {
+                                        var cmd = parseInt(p.touch.touch_hits) + parseInt(p.touch.touch_misses);
+                                        var cmdhits = parseInt(p.touch.touch_hits);
+                                        var cmdmiss = parseInt(p.touch.touch_misses);
+                                        $("#cmd_touch_value").text(cmd);
+                                        $("#touch_hits_value").text(cmdhits);
+                                        $("#touch_misses_value").text(cmdmiss);
+                                        if (cmd == 0) 
+                                          rate = 0;
+                                        else {
+                                            var rt = cmdhits / cmd * 100;
+                                            var rate = rt.toFixed(2);
+                                        }
+                                        $("#touch_hit_rate").text(rate + "%");
+                                        var x = parseInt(cmdhits / cmd * 100);
+                                        var y = parseInt(cmdmiss / cmd * 100);
+                                        var myvalues = [x, y];
+                                        $("#touchhitchart").html("");
+                                        var hit_id = "touchchar_" + (new Date()).getTime();
+                                        if (cmd == 0) 
+                                          $("#touchhitchart").html("<div class=\"nochart\">" + nochart + "</div>");
+                                        else 
+                                          $("#touchhitchart").html("<span id=\"" + hit_id + "\" class=\"chart\">Loading..</span><div class=\"chartico\"><div class=\"hitico\">" + charthit + "</div><div class=\"missico\">" + chartmiss + "</div></div>");
+                                        $('#' + hit_id).sparkline(myvalues, {
+                                            type: 'pie',
+                                            width: '110px',
+                                            height: '110px',
+                                            sliceColors: ['#2886dd', '#fb3c4e']
+                                        });
+                                    }
 
                                 });
                             } catch(ex) {}
@@ -303,6 +333,12 @@ $(function() {
         height: '110px',
         sliceColors: ['#2886dd', '#fb3c4e']
     });
+    $('#touchchart').sparkline('html', {
+        type: 'pie',
+        width: '110px',
+        height: '110px',
+        sliceColors: ['#2886dd', '#fb3c4e']
+    });
 });
 function Init_Layout() {
     var initx = 10,
@@ -329,6 +365,10 @@ function Init_Layout() {
         }
         if (i == 5) {
             tx = initx;
+            ty = $(".drag_1").height() + $(".drag_3").height() + inity + 2 * hsp;
+        }
+		if (i == 6) {
+            tx = $(".drag_3").width() + wsp + initx;
             ty = $(".drag_1").height() + $(".drag_3").height() + inity + 2 * hsp;
         }
         $(this).css({

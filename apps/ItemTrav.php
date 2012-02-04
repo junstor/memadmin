@@ -2,12 +2,7 @@
 /**
  * return the traverse data
  */
-session_start();
-header("Cache-Control: no-cache, must-revalidate");
-date_default_timezone_set('Asia/Shanghai');
-error_reporting(0);
-define('IN_MADM', true);
-require_once('../include/class/memmanager.class.php');
+require_once('./appCommon.php');
 if (!isset($_GET['type']) || !isset($_GET['num']) || !isset($_GET['shownum']))
 	exit('Fail');
 if ($_GET['type'] == 'con') {
@@ -33,21 +28,35 @@ if (!$memm -> MemConnect($type, $curcon))
 	exit("ConnectFail");
 if ($type == 'con') {
 	$list = $memm -> MemCacheDump($slabid, $shownum);
+	 $slist = $memm->GetStats($curcon['host'],$curcon['port']);
 	$lid = $curcon['host'] . ":" . $curcon['port'];
 	$list = $list[$lid];
 	$relist = array();
 	$relist['res'] = array();
-	foreach($list as $key => $value) {
-		$relist['res'][] = array($key, $value);
-	} 
+	$stime = intval($slist['time']) - intval($slist['uptime']);
+	 foreach($list as $key => $value) {
+		$t=$value[1];
+		if($t==$stime)
+			$value[1] = "noexpire";
+		else
+			$value[1] = date('Y-m-d H:m:s',$t);
+		$relist['res'][] = array(urlencode($key), $value);
+	}
 	$relist['rnum'] = count($relist['res']);
 	echo json_encode($relist);
 } else if ($type == 'conp') {
 	$list = $memm -> conpMemCacheDump($conid, $slabid, $shownum);
+	$slist = $memm-> ConpGetStats();
 	$relist = array();
 	$relist['res'] = array();
+	$stime = intval($slist[$conid]['time']) - intval($slist[$conid]['uptime']);
 	foreach($list as $key => $value) {
-		$relist['res'][] = array($key, $value);
+		$t=$value[1];
+		if($t==$stime)
+			$value[1] = "noexpire";
+		else
+			$value[1] = date('Y-m-d H:m:s',$t);
+		$relist['res'][] = array(urlencode($key), $value);
 	} 
 	$relist['rnum'] = count($relist['res']);
 	echo json_encode($relist);

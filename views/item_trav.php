@@ -14,6 +14,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php 
+	if(strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8.0"))
+		echo "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=EmulateIE7\" />";
+?>
 <title>Item_Trav</title>
 <script type="text/javascript" src="../include/js/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" src="../include/js/jquery.md5.js"></script>
@@ -37,6 +41,7 @@ var del="<?php echo $langs['con_del'];?>";
 var valuefail="<?php echo $langs['memg_geterror'];?>";
 var conpnoexist="<?php echo $langs['itemt_conpgeterror'];?>";
 var novaluetime="<?php echo $langs['itemt_novaluetime'];?>";
+var valuetypetit="<?php echo $langs['itemt_valuetype'];?>";
 var loading="<?php echo $langs['itemt_loading'];?>";
 var prepage="<?php echo $langs['itemt_prepage'];?>";
 var nexpage="<?php echo $langs['itemt_nexpage'];?>";
@@ -47,6 +52,12 @@ var updatetit="<?php echo $langs['memg_updateres'];?>";
 var type="<?php echo $type;?>";
 var num="<?php echo $num;?>";
 var getconid="<?php echo $conid;?>";
+var moreinfo="<?php echo $langs['itemt_moreinfo'];?>";
+var moreclose="<?php echo $langs['itemt_closemore'];?>";
+var itemsize="<?php echo $langs['itemt_size'];?>";
+var noexpire="<?php echo $langs['itemt_expiretime'];?>";
+var charset="<?php echo $langs['itemt_charsettit'];?>";
+var recharnot="<?php echo $langs['memg_reget'];?>";
 </script>
 </head>
 
@@ -74,9 +85,11 @@ if($type=='con') {
 			else
 			{
 ?>
+			<div class="layoutfixed">
 			<div id="itemstit"><span><?php echo $curcon['name'];?></span><span><?php echo $curcon['host']." : ".$curcon['port'];?></span></div>
-            <div id="totalnum"><?php echo $langs['itemt_totalnum'];?>：<span id="totalnumvalue"><?php echo $list_check1['curr_items'];?></span><span id="numnott"><?php echo $langs['itemt_numnott'];?></span></div>
+            <div id="totalnum"><?php echo $langs['itemt_totalnum'];?>：<span id="totalnumvalue"><?php echo $list_check1['curr_items'];?></span><span id="numnott"><?php echo $langs['itemt_numnott'];?></span></div></div>
 			<div id="travmenu">
+            <div class="layoutfixed">
             	<div id="totalmenu">        	
                     <div id="selslab">
                     	<?php echo $langs['itemt_sleslabid'];?>：
@@ -98,9 +111,18 @@ if($type=='con') {
                     	</select>
                     </div>
                     <div id="slabtotalnum"><?php echo $langs['itemt_slabtotalnum'];?>：<span id="slabtotalnumvalue"><?php echo $list[$li]['number'];?></span></div>
-                    <div id="slabtrav"><?php echo $langs['itemt_travtit'];?><input id="travnum" name="travnum" type="text" /><?php echo $langs['itemt_travtitnum'];?><input id="gotrav" class="but" name="gotrav" type="button" value="<?php echo $langs['itemt_getbut'];?>"/></div>
+                    <div id="slabtrav"><?php echo $langs['itemt_travtit'];?><input id="travnum" name="travnum" type="text" /><?php echo $langs['itemt_travtitnum'];?>
+                    <span id="charsettit"><?php echo $langs['itemt_charsettit'];?>：</span>
+                    <select name='selcharset' id="selcharset">
+                    	<option id="UTF-8" value="UTF-8">UTF-8</option>
+                    	<option id="GBK" value="GBK">GBK</option>
+                    	<option id="GB2312" value="GB2312">GB2312</option>
+                        <option id="GB18030" value="GB18030">GB18030</option>
+                        <option id="Latin-1" value="Latin-1">Latin-1</option>
+                    </select>
+                    <input id="gotrav" class="but" name="gotrav" type="button" value="<?php echo $langs['itemt_getbut'];?>"/></div>
                 </div>
-            
+            </div>
             </div>
 <?php	
 			}
@@ -113,6 +135,7 @@ if($type=='con') {
 		$list=$memm->conpGetItems();
 		$list_check=$memm->ConpGetStats();
 ?>
+<div class="layoutfixed">
 <div id="itemstit"><span><?php echo $curcon['name'];?></span></div>	
 <div id="selcon">
 <select name='conitemsle' id="conitemsle">
@@ -143,8 +166,9 @@ if($type=='con') {
 				echo "<div id=\"confail\">".$langs['confail_tokyo_cabinet']."</div>";
 		} else {
 ?>			
-<div id="totalnum"><?php echo $langs['itemt_totalnum'];?>：<span id="totalnumvalue"><?php echo $list_check[$li_conid]['curr_items'];?></span></span><span id="numnott"><?php echo $langs['itemt_numnott'];?></span></div>
+<div id="totalnum"><?php echo $langs['itemt_totalnum'];?>：<span id="totalnumvalue"><?php echo $list_check[$li_conid]['curr_items'];?></span></span><span id="numnott"><?php echo $langs['itemt_numnott'];?></span></div></div>
 <div id="travmenu">
+<div class="layoutfixed">
             	<div id="totalmenu">        	
                     <div id="selslab">
                     	<?php echo $langs['itemt_sleslabid']?>：
@@ -166,9 +190,18 @@ if($type=='con') {
                     	</select>
                     </div>
                     <div id="slabtotalnum"><?php echo $langs['itemt_slabtotalnum'];?>：<span id="slabtotalnumvalue"><?php echo $list[$li_conid]['items'][$li]['number'];?></span></div>
-                    <div id="slabtrav"><?php echo $langs['itemt_travtit'];?><input id="travnum" name="travnum" type="text" /><?php echo $langs['itemt_travtitnum'];?><input id="gotrav" class="but" name="gotrav" type="button" value="<?php echo $langs['itemt_getbut'];?>"/></div>
+                    <div id="slabtrav"><?php echo $langs['itemt_travtit'];?><input id="travnum" name="travnum" type="text" /><?php echo $langs['itemt_travtitnum'];?>
+                    <span id="charsettit"><?php echo $langs['itemt_charsettit'];?>：</span>
+                    <select name='selcharset' id="selcharset">
+                    	<option id="UTF-8" value="UTF-8">UTF-8</option>
+                    	<option id="GBK" value="GBK">GBK</option>
+                    	<option id="GB2312" value="GB2312">GB2312</option>
+                        <option id="GB18030" value="GB18030">GB18030</option>
+                        <option id="Latin-1" value="Latin-1">Latin-1</option>
+                    </select>
+                    <input id="gotrav" class="but" name="gotrav" type="button" value="<?php echo $langs['itemt_getbut'];?>"/></div>
                 </div>
-            
+            </div>
             </div>
 <?php		
 		}

@@ -167,6 +167,15 @@ $langs['cs_cmd_delete_hits']="total DELETE hits number（Tokyo Tyrant only）";
 $langs['cs_cmd_delete_misses']="total DELETE misses number（Tokyo Tyrant only）";
 $langs['cs_cmd_get_hits']="total GET hits number（Tokyo Tyrant only）";
 $langs['cs_cmd_get_misses']="total GET misses number（Tokyo Tyrant only）";
+$langs['cs_reserved_fds']="number of misc fds used internally";
+$langs['cs_cmd_touch']="total TOUCH commands number";
+$langs['cs_touch_hits']="total TOUCH hits number";
+$langs['cs_touch_misses']="total TOUCH misses number";
+$langs['cs_hash_power_level']="hash table level";
+$langs['cs_hash_bytes']="size of hash table";
+$langs['cs_hash_is_expanding']="hash table is expanding";
+$langs['cs_expired_unfetched']="number of items which expired but never touched";
+$langs['cs_evicted_unfetched']="number of items which evicted but never touched";
 
 //con_settings.php
 $langs['sett_tit']="SETTINGS";
@@ -177,8 +186,8 @@ $langs['sett_udpport']="UDP port";
 $langs['sett_inter']="IP address";
 $langs['sett_verbosity']="log（0=none,1=som,2=lots）";
 $langs['sett_oldest']="the oldest object expiration time";
-$langs['sett_evictions']="disabled LRU（on/off）";
-$langs['sett_domain_socket']="socket domain";
+$langs['sett_evictions']="LRU is available（on/off）";
+$langs['sett_domain_socket']="Socketpath";
 $langs['sett_umask']="socket umask";
 $langs['sett_growth_factor']="growth factor";
 $langs['sett_chunk_size']="chunk size（key+value+flags）";
@@ -194,6 +203,10 @@ $langs['sett_auth_enabled_sasl']="SASL is able（yes/no）";
 $langs['sett_item_size_max']="maximum size of item";
 $langs['nosettings']="No SETTINGS Information can be get,no permissions or version does not support";
 $langs['confail_tokyo_cabinet']="No SETTINGS Information can be get,maybe the connection is Tokyo Tyrant or other memcached protocol service";
+$langs['sett_maxconns_fast']="writes an error and closes the connection when connect the maximum";
+$langs['sett_hashpower_init']="hash table level init";
+$langs['sett_slab_reassign']="slab can be reassigned";
+$langs['sett_slab_automove']="slab auto reassign";
 
 //con_items.php
 $langs['items_tit']="ITEMS";
@@ -208,6 +221,8 @@ $langs['items_evicted_time']="how many seconds it's been since the last item to 
 $langs['items_outofmemory']="number of items that can not be stored";
 $langs['items_tailrepairs']="times of repair the slabs";
 $langs['items_reclaimed']="how many times memcached re-used expired items";
+$langs['items_expired_unfetched']="number of items which expired but never touched";
+$langs['items_evicted_unfetched']="number of items which evicted but never touched";
 
 //con_sizes.php
 $langs['size_tit']="SIZES";
@@ -236,6 +251,7 @@ $langs['slabs_cas_hits']="CAS hits number";
 $langs['slabs_cas_badval']="number of CAS hits on this chunk where the existing value did not match";
 $langs['noslabs_conp']="No SLABS Information can be get";
 $langs['noslabs_noitems']="No SLABS Information can be get,maybe there is no item in the memcached";
+$langs['slabs_touch_hits']="TOUCH hits number";
 
 //stats_monitor.php
 $langs['statsmo_tit']="Statistics Monitor";
@@ -279,6 +295,7 @@ $langs['hm_incrtit']="INCR Hits";
 $langs['hm_decrtit']="DECR Hits";
 $langs['hm_castit']="CAS Hits";
 $langs['hm_settit']="SET Hits";
+$langs['hm_touchtit']="TOUCH Hits";
 
 //show_monitor_hit.php
 $langs['hitmo_tit']="Hits Monitor";
@@ -295,17 +312,18 @@ $langs['hitmo_miss']="miss";
 $langs['memg_tit']="GET Command";
 $langs['memg_nokey']="Input the KEY";
 $langs['memg_delconfirm']="be sure to delete?";
-$langs['memg_unserfail']="Unserialize Fail";
+$langs['memg_unserfail']="Unserialize fail,the value can not be unserialized";
 $langs['memg_inputnot']="more than one key,separated by space";
 $langs['memg_notget']="No result";
 $langs['memg_getres']="Results";
-$langs['memg_resnot']="JSON after unserialize displayed as an array";
+$langs['memg_resnot']="Auto serialize array/object,JSON after unserialize displayed as an array";
 $langs['memg_geterror']="WRONG：can not be decompressed or unserialized,the reason the flag is wrong";
 $langs['memg_butvalue']="Get";
 $langs['memg_ser']="Serialize";
 $langs['memg_unser']="Unserialize";
 $langs['memg_tnum']="Total Num";
 $langs['memg_updateres']="Refresh";
+$langs['memg_reget']="charset is wrong，try to transform";
 
 //mem_set.php
 $langs['mems_tit']="Set Command";
@@ -343,7 +361,13 @@ $langs['itemt_slabtotalnum']="number";
 $langs['itemt_travtit']="Get the first";
 $langs['itemt_travtitnum']="items";
 $langs['itemt_getbut']="Traverse";
-$langs['itemt_numnott']="expired items can not be traversed";
+$langs['itemt_numnott']="2MB max response size for csachedump";
+$langs['itemt_moreinfo']="More";
+$langs['itemt_closemore']="Close";
+$langs['itemt_size']="Size";
+$langs['itemt_expiretime']="No";
+$langs['itemt_valuetype']="Type";
+$langs['itemt_charsettit']="Charset";
 
 //item_filtertrav.php
 $langs['itemft_tit']="Filter";
@@ -359,7 +383,7 @@ $langs['itemft_valuefiltertit']="Limited the VALUE";
 $langs['itemft_filter']="Regex";
 $langs['itemft_perlonly']="Accept Perl-compatible Regex";
 $langs['itemft_demo']="Regex Demo";
-$langs['itemft_notforvalue']="Limited the VALUE will GET all items,affect the accuracy of hit statistics,please make sure";
+$langs['itemft_notforvalue']="Limited the VALUE will GET all items,serialize array/object first,then match them,please mind the extra char after serialize";
 $langs['itemft_close']="Close";
 $langs['itemft_demo1']="Contains abc";
 $langs['itemft_demo2']="Contains abc and ignore case";

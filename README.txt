@@ -1,6 +1,6 @@
-MemAdmin v 1.0.8
+MemAdmin v 1.0.9
  
- 2011/11/9
+ 2012/2/4
 
  Installation :
 
@@ -13,6 +13,13 @@ MemAdmin v 1.0.8
  BUGs Report : junstor@gmail.com
 
  Changelog : 
+
+ v1.0.9 -- 2012/2/4
+   * fix five bugs
+   * Add charset support
+   * Add touch command support
+   * Compatible with memcached v1.4.11/v1.4.12/v1.4.13
+
  v1.0.8 -- 2011/11/9
    * fix two bugs
 

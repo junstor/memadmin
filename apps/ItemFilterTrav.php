@@ -2,12 +2,7 @@
 /**
  * return the traverse data after filtered
  */
-session_start();
-header("Cache-Control: no-cache, must-revalidate");
-date_default_timezone_set('Asia/Shanghai');
-error_reporting(0);
-define('IN_MADM', true);
-require_once('../include/class/memmanager.class.php');
+require_once('./appCommon.php');
 if (!isset($_GET['type']) || !isset($_GET['num']) || !isset($_GET['shownum']) || !isset($_POST['data']))
 	exit('Fail');
 if ($_GET['type'] == 'con') {
@@ -49,10 +44,12 @@ if (!$memm -> MemConnect($type, $curcon))
 	exit("ConnectFail");
 if ($type == 'con') {
 	$list = $memm -> MemCacheDump($slabid, $shownum);
+	$slist = $memm->GetStats($curcon['host'],$curcon['port']);
 	$lid = $curcon['host'] . ":" . $curcon['port'];
 	$list = $list[$lid];
 	$relist = array();
 	$relist['res'] = array();
+	$stime = intval($slist['time']) - intval($slist['uptime']);
 	foreach($list as $key => $value) {
 		$keyallow = 0;
 		$valueallow = 0;
@@ -67,24 +64,41 @@ if ($type == 'con') {
 		} 
 		if ($filters[0]['vt'] == 1) {
 			$getvalue = $memm -> MemGet(array($key));
-			$rvalue = @preg_match($valuefilter, $getvalue[0][$key]);
-			if (gettype($rvalue) == 'integer' && $rvalue == 1)
+			if(is_string($getvalue[0][$key])) {
+				$rvalue = @preg_match($valuefilter, $getvalue[0][$key]);
+				if (gettype($rvalue) == 'integer' && $rvalue == 1)
+					$valueallow = 1;
+				else
+					$valueallow = 0;
+			} elseif (is_array($getvalue[0][$key]) || is_object($getvalue[0][$key])) {
+				$rvalue = @preg_match($valuefilter, serialize($getvalue[0][$key]));
+				if (gettype($rvalue) == 'integer' && $rvalue == 1)
+					$valueallow = 1;
+				else
+					$valueallow = 0;
+			} else {
 				$valueallow = 1;
-			else
-				$valueallow = 0;
+			}
 		} else {
 			$valueallow = 1;
 		} 
 		if ($keyallow == 1 && $valueallow == 1) {
-			$relist['res'][] = array($key, $value);
+			$t=$value[1];
+			if($t==$stime)
+				$value[1] = "noexpire";
+			else
+				$value[1] = date('Y-m-d H:m:s',$t);
+			$relist['res'][] = array(urlencode($key), $value);
 		} 
 	} 
 	$relist['rnum'] = count($relist['res']);
 	echo json_encode($relist);
 } else if ($type == 'conp') {
 	$list = $memm -> conpMemCacheDump($conid, $slabid, $shownum);
+	$slist = $memm-> ConpGetStats();
 	$relist = array();
 	$relist['res'] = array();
+	$stime = intval($slist[$conid]['time']) - intval($slist[$conid]['uptime']);
 	foreach($list as $key => $value) {
 		$keyallow = 0;
 		$valueallow = 0;
@@ -99,18 +113,35 @@ if ($type == 'con') {
 		} 
 		if ($filters[0]['vt'] == 1) {
 			$getvalue = $memm -> MemGet(array($key));
-			$rvalue = @preg_match($valuefilter, $getvalue[0][$key]);
-			if (gettype($rvalue) == 'integer' && $rvalue == 1)
+			if(is_string($getvalue[0][$key])) {
+				$rvalue = @preg_match($valuefilter, $getvalue[0][$key]);
+				if (gettype($rvalue) == 'integer' && $rvalue == 1)
+					$valueallow = 1;
+				else if ($getvalue[0][$key] == 'undefined' || $getvalue[0][$key] == false)
+					$valueallow = 1;
+				else
+					$valueallow = 0;
+			} elseif (is_array($getvalue[0][$key]) || is_object($getvalue[0][$key])) {
+				$rvalue = @preg_match($valuefilter, serialize($getvalue[0][$key]));
+				if (gettype($rvalue) == 'integer' && $rvalue == 1)
+					$valueallow = 1;
+				else if ($getvalue[0][$key] == 'undefined' || $getvalue[0][$key] == false)
+					$valueallow = 1;
+				else
+					$valueallow = 0;
+			} else {
 				$valueallow = 1;
-			else if ($getvalue[0][$key] == 'undefined' || $getvalue[0][$key] == false)
-				$valueallow = 1;
-			else
-				$valueallow = 0;
+			}
 		} else {
 			$valueallow = 1;
 		} 
 		if ($keyallow == 1 && $valueallow == 1) {
-			$relist['res'][] = array($key, $value);
+			$t=$value[1];
+			if($t==$stime)
+				$value[1] = "noexpire";
+			else
+				$value[1] = date('Y-m-d H:m:s',$t);
+			$relist['res'][] = array(urlencode($key), $value);
 		} 
 	} 
 	$relist['rnum'] = count($relist['res']);

@@ -8,7 +8,7 @@
 	$curcon=$memm->GetConFromSession($type,$num);
 	$memm->LoadMem();
 	$li_init=NULL;
-	$monitorarr=array('rusage_user','rusage_system','curr_connections','total_connections','cmd_get','cmd_set','cmd_flush','bytes_read','bytes_written','accepting_conns','listen_disabled_num','conn_yields','bytes','curr_items','total_items','evictions','reclaimed');
+	$monitorarr=array('rusage_user','rusage_system','curr_connections','total_connections','cmd_get','cmd_set','cmd_flush','cmd_touch','bytes_read','bytes_written','accepting_conns','listen_disabled_num','conn_yields','bytes','curr_items','total_items','evictions','reclaimed','hash_bytes','expired_unfetched','evicted_unfetched');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -117,6 +117,11 @@ var autof=0;
 						$cmdmiss=$list['cas_misses'];
 						$cmdhit=$list['cas_hits'];
 					}
+					else if($value=='touch') {
+						$cmdcount=$list['cmd_touch'];
+						$cmdmiss=$list['touch_misses'];
+						$cmdhit=$list['touch_hits'];
+					}
 ?>
 	<div id="<?php echo $value;?>hit" class="monitordiv drag_<?php echo $i;?>">
     	<div id="<?php echo $value;?>tit" class="movetit"><?php echo strtoupper($value)." ".$langs['hitmo_hittit'];?></div>
@@ -207,6 +212,11 @@ var autof=0;
 						$cmdcount=$list[$conid]['cas_hits']+$list[$conid]['cas_misses'];
 						$cmdmiss=$list[$conid]['cas_misses'];
 						$cmdhit=$list[$conid]['cas_hits'];
+					}
+					else if($value=='touch') {
+						$cmdcount=$list[$conid]['cmd_touch'];
+						$cmdmiss=$list[$conid]['touch_misses'];
+						$cmdhit=$list[$conid]['touch_hits'];
 					}
 ?>
 	<div id="<?php echo $value;?>hit" class="monitordiv drag_<?php echo $i;?>">

@@ -2,14 +2,13 @@
 /**
  * serialize and unserialize
  */
-session_start();
-header("Cache-Control: no-cache, must-revalidate");
-date_default_timezone_set('Asia/Shanghai');
-error_reporting(0);
-define('IN_MADM', true);
-require_once('../include/class/memmanager.class.php');
+require_once('./appCommon.php');
 if (!isset($_GET['type']) || !isset($_GET['num']) || !isset($_GET['action']))
 	exit('Fail');
+if(!isset($_GET['charset']))
+	$cs='UTF-8';
+else
+	$cs=$_GET['charset'];
 $type = $_GET['type'];
 $num = $_GET['num'];
 $key = $_POST['data'];
@@ -25,50 +24,36 @@ $thekey = str_replace("_ _rx", "\\", $thekey);
 if ($_GET['action'] == 'ser') {
 	$list = $memm -> MemGet(array($thekey));
 	if (is_array($list[0][$thekey])) {
-		$tempa=array();
-		foreach($list[0][$thekey] as $k => $v) {
-			$k=htmlspecialchars($k);
-			$v=htmlspecialchars($v);
-			$tempa[$k]=$v;
-		}
-		echo serialize($tempa);
-	} else if(gettype($list[0][$thekey])=='object') { 
+		arrayRecursive($list[0][$thekey], 'htmlspecialchars', true,$cs);
 		echo serialize($list[0][$thekey]);
+	} else if(gettype($list[0][$thekey])=='object') { 
+		echo serialize(toutf8($list[0][$thekey],$cs));
 	} else {
-		echo htmlspecialchars($list[0][$thekey]);
+		echo htmlspecialchars(toutf8($list[0][$thekey],$cs));
 	} 
 } 
 if ($_GET['action'] == 'unser') {
 	$list = $memm -> MemGet(array($thekey));
 	if (is_array($list[0][$thekey])||gettype($list[0][$thekey])=='object') {
+		arrayRecursive($list[0][$thekey], 'htmlspecialchars', true,$cs);
 		echo "<pre>";
 		print_r($list[0][$thekey]);
 		echo "</pre>";
 	} else {
 		$unser = @unserialize($list[0][$thekey]);
 		if (is_array($unser)) {
-			$tempa=array();
-			foreach($unser as $k => $v) {
-				$k=htmlspecialchars($k);
-				$v=htmlspecialchars($v);
-				$tempa[$k]=$v;
-			}
+			arrayRecursive($unser, 'htmlspecialchars', true,$cs);
 			echo "<pre>";
-			print_r($tempa);
+			print_r($unser);
 			echo "</pre>";
 		} else if ($unser == false) {
 			$jsonstr = json_decode($list[0][$thekey], true);
 			if ($jsonstr == null)
 				echo "FormatFail";
 			else if (is_array($jsonstr)) {
-				$tempa=array();
-				foreach($jsonstr as $k => $v) {
-					$k=htmlspecialchars($k);
-					$v=htmlspecialchars($v);
-					$tempa[$k]=$v;
-				}
+				arrayRecursive($jsonstr, 'htmlspecialchars', true,$cs);
 				echo "<pre>";
-				print_r($tempa);
+				print_r($jsonstr);
 				echo "</pre>";
 			} else
 				echo "FormatFail";

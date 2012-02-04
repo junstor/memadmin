@@ -1,5 +1,4 @@
-html{_overflow-x: hidden;}
-body{padding-left:10px;padding-top:5px;_display:inline;}
+body{padding-left:10px;padding-right:10px;padding-top:5px;_display:inline;}
 a{color:#0066cc;}
 #top{border-bottom:#CCC solid 1px;line-height:25px;}
 #confail{margin-top:30px; font-weight:bold; height:36px; line-height:36px;background:url(../../images/confail.gif) no-repeat; padding-left:45px;clear:both;}
@@ -7,11 +6,11 @@ a{color:#0066cc;}
 #confail a,#noitems a{margin-left:10px;}
 #itemstit{margin-top:20px;padding-left:20px;background:url(../../images/ico1.gif) 0px 2px no-repeat; float:left;margin-bottom:15px;*margin-bottom:-10px;}
 #itemstit span{margin-right:10px;}
-#travmenu{clear:both; background:#f2f2f3;width:750px;min-width:750px;height:50px;line-height:50px;padding-left:18px;*margin-top:15px;}
+#travmenu{clear:both; background:#f2f2f3;width:100%;height:50px;line-height:50px;*margin-top:15px;}
 #totalnum{margin-top:20px;margin-left:50px;float:left;}
 #totalnumvalue,#slabtotalnumvalue{margin-right:5px; color:#F00;}
 #selslabid,#conpselslabid{width:130px;}
-#selslab{float:left;_margin-top:13px;}
+#selslab{float:left;_margin-top:13px;margin-left:10px;}
 #slabtotalnum{float:left;margin-left:20px;}
 #slabtrav{margin-left:20px; float:left;_margin-top:9px;}
 *+html #slabtrav{margin-top:-4px;}
@@ -19,35 +18,41 @@ a{color:#0066cc;}
 .but{width:80px; height:25px;color:#000; background:#f7f6f6;border:#d4d4c3 solid 1px;cursor:pointer;}
 .but:hover{ cursor:pointer;}
 .but:active{padding:2px 0 0 2px;}
-#gotrav{margin-left:20px;}
+#gotrav{margin-left:25px; position:relative;margin-left:30px;*left:35px;}
 #totalmenu{margin-left:0px;}
 #selcon{float:left;margin-top:17px;margin-left:20px;}
-#querytit{clear:both;width:764px;*margin-bottom:10px;}
+#querytit{clear:both;width:100%;*margin-bottom:10px;overflow:hidden;}
 #showtit{float:left;}
 #showimp{float:right;}
-#showres{ position:relative;top:20px;}
-.showvalue{width:764px;border:#e1e0e0 solid 1px;margin-bottom:15px;clear:both;}
+#showres{ position:relative;top:20px;overflow:hidden;}
+.showvalue{width:100%;border:#e1e0e0 solid 1px;margin-bottom:15px;clear:both;word-break:break-all;word-wrap:break-word;}
 .thekey{float:left;width:600px;height:25px;line-height:25px;font-size:14px;margin-left:10px;margin-right:10px;clear:both; overflow:hidden;word-wrap:break-word; word-break:break-all;}
 .keycon{font-style:italic;}
 .keytit{margin-right:10px;}
-.keyandflags{background:#f2f2f3; width:764px; height:25px;}
+.keyandflags{background:#f2f2f3; width:100%; height:25px;}
 .thevalue{padding-left:10px;padding-right:10px;clear:both;border-top:#e1e0e0 solid 1px;padding-top:20px;background:#FFF;word-wrap:break-word; word-break:break-all;}
-.theflags{float:right;margin-right:10px;margin-top:5px;}
-.valuefail{color:#F00;}
-.valuemenu{height:25px;line-height:25px;background:#FFF;margin-top:0px;}
+.theflags{float:right;margin-right:10px;margin-top:2px;}
+.valuefail{color:#ff0000;}
+.valuemenu{height:25px;line-height:25px;background:#FFF;margin-top:5px;}
 .menulist{float:right;padding-right:10px;}
 #showtit{float:left;margin-bottom:15px;}
-.showunser{margin-right:10px;}
-.showser{margin-right:10px;}
+.showunser{margin-right:10px;margin-left:20px;}
+.showser{margin-right:10px;margin-left:20px;}
 .updater{margin-right:10px;}
 .t_hide{display:none;}
 .novaluet{margin-right:10px; color:#a8a8a9;}
 #pages{width:100%;height:50px; margin-top:50px;}
 #loading{clear:both;width:100px;margin-left:10px;height:16px;line-height:16px;}
 #loading img{margin-right:15px;}
-.everypage,#curpage{margin-left:10px;margin-right:10px;}
+.everypage,#curpage{margin-left:5px;margin-right:10px;}
 #showtotalnum{margin-left:20px;}
 #inputpage{margin-left:10px;width:50px;}
 #gopage{margin-left:10px;width:40px;height:23px;margin-right:20px;}
 #hideindex{display:none;}
 #numnott{margin-left:30px;}
+.showmorediv{margin:0 auto;padding:6px;text-align:right;display:none;}
+.downflags,.downexpire,.downsize{margin-left:20px;}
+.flagsvalues{margin-left:5px;}
+.showmorebut{margin-left:10px;}
+#charsettit,#selcharset{ position:relative;left:15px;}
+.layoutfixed{width:930px;}

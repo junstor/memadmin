@@ -69,6 +69,8 @@ if($type=='con') {
 			echo "<tr><label for=\"checkbox_decr\"><td class=\"checktd\"><input type=\"checkbox\" class=\"checkmo\" name=\"checkbox_monitor[]\" id=\"checkbox_decr\" value=\"decr\"/></td><td>".$langs['hm_decrtit']."</td></label></tr>";
 		if(array_key_exists('cas_hits',$list))
 			echo "<tr><label for=\"checkbox_cas\"><td class=\"checktd\"><input type=\"checkbox\" class=\"checkmo\" name=\"checkbox_monitor[]\" id=\"checkbox_cas\" value=\"cas\"/></td><td>".$langs['hm_castit']."</td></label></tr>";
+		if(array_key_exists('touch_hits',$list))
+			echo "<tr><label for=\"checkbox_touch\"><td class=\"checktd\"><input type=\"checkbox\" class=\"checkmo\" name=\"checkbox_monitor[]\" id=\"checkbox_touch\" value=\"touch\"/></td><td>".$langs['hm_touchtit']."</td></label></tr>";
 	} else {
 ?>
 <tr><label for="checkbox_get"><td class="checktd"><input type="checkbox" class="checkmo" name="checkbox_monitor[]" id="checkbox_get" value="get"/></td><td><?php echo $langs['hm_gettit'];?></td></label></tr>
@@ -152,6 +154,8 @@ else if($type=='conp') {
 			echo "<tr><label for=\"checkbox_decr\"><td class=\"checktd\"><input type=\"checkbox\" class=\"checkmo\" name=\"checkbox_monitor[]\" id=\"checkbox_decr\" value=\"decr\"/></td><td>".$langs['hm_decrtit']."</td></label></tr>";
 		if(array_key_exists('cas_hits',$list[$li]))
 			echo "<tr><label for=\"checkbox_cas\"><td class=\"checktd\"><input type=\"checkbox\" class=\"checkmo\" name=\"checkbox_monitor[]\" id=\"checkbox_cas\" value=\"cas\"/></td><td>".$langs['hm_castit']."</td></label></tr>";
+		if(array_key_exists('touch_hits',$list[$li]))
+			echo "<tr><label for=\"checkbox_touch\"><td class=\"checktd\"><input type=\"checkbox\" class=\"checkmo\" name=\"checkbox_monitor[]\" id=\"checkbox_touch\" value=\"touch\"/></td><td>".$langs['hm_touchtit']."</td></label></tr>";
 	} else {
 ?>
 <tr><label for="checkbox_get"><td class="checktd"><input type="checkbox" class="checkmo" name="checkbox_monitor[]" id="checkbox_get" value="get"/></td><td><?php echo $langs['hm_gettit'];?></td></label></tr>

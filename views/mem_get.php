@@ -14,6 +14,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php 
+	if(strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 8.0"))
+		echo "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=EmulateIE7\" />";
+?>
 <title>Mem_Get</title>
 <script type="text/javascript" src="../include/js/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" src="../include/js/jquery.md5.js"></script>
@@ -37,6 +41,8 @@ var loading="<?php echo $langs['itemt_loading'];?>";
 var updatetit="<?php echo $langs['memg_updateres'];?>";
 var type="<?php echo $type;?>";
 var num="<?php echo $num;?>";
+var valuetypetit="<?php echo $langs['itemt_valuetype'];?>";
+var charset="<?php echo $langs['itemt_charsettit'];?>";
 </script>
 </head>
 <body>
@@ -51,11 +57,23 @@ if(!$memm->MemConnect($type,$curcon)) {
 } else {
 ?>
 <div id="inputkey">
+<div class="layoutfixed">
 <div id="inputkeytit">KEY:</div>
 <div id="form_inputkey"><input id="keyquery" name="keyquery" type="text" value="<?php echo $inputkey;?>"/></div>
+<div id="getchar">
+<span id="charsettit"><?php echo $langs['itemt_charsettit'];?>：</span>
+<select name='selcharset' id="selcharset">
+<option id="UTF-8" value="UTF-8">UTF-8</option>
+<option id="GBK" value="GBK">GBK</option>
+<option id="GB2312" value="GB2312">GB2312</option>
+<option id="GB18030" value="GB18030">GB18030</option>
+<option id="Latin-1" value="Latin-1">Latin-1</option>
+</select>
+</div>
 <div id="inputbut"><input id="keybut" class="but" name="keybut" type="button" value="GET"/></div>
 <div id="inputnot">
 <?php echo $langs['memg_inputnot'];?>
+</div>
 </div>
 </div>
 <div id="showres">

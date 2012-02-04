@@ -21,7 +21,7 @@ $langs['getdata']="读取数据";
 $langs['setdata']="写入数据";
 $langs['countcom']="计数命令";
 $langs['flushallt']="全部失效";
-$langs['exmod']="扩展模块";
+$langs['exmod']="扩展功能";
 $langs['itemtravt']="数据遍历";
 $langs['itemfiltravt']="条件遍历";
 
@@ -149,7 +149,7 @@ $langs['cs_auth_errors']="认证失败数目";
 $langs['cs_bytes_read']="读取总字节数";
 $langs['cs_bytes_written']="发送总字节数";
 $langs['cs_limit_maxbytes']="分配的内存总大小（字节）";
-$langs['cs_accepting_conns']="服务器是否达到过最大连接（0/1）";
+$langs['cs_accepting_conns']="接受新的连接";
 $langs['cs_listen_disabled_num']="失效的监听数";
 $langs['cs_threads']="当前线程数";
 $langs['cs_conn_yields']="连接操作主动放弃数目";
@@ -167,6 +167,15 @@ $langs['cs_cmd_delete_hits']="delete命令未命中次数（Tokyo Tyrant服务�
 $langs['cs_cmd_delete_misses']="delete命令未命中次数（Tokyo Tyrant服务特有）";
 $langs['cs_cmd_get_hits']="get命令命中次数（Tokyo Tyrant服务特有）";
 $langs['cs_cmd_get_misses']="get命令未命中次数（Tokyo Tyrant服务特有）";
+$langs['cs_reserved_fds']="内部使用的FD数";
+$langs['cs_cmd_touch']="touch命令请求次数";
+$langs['cs_touch_hits']="touch命令命中次数";
+$langs['cs_touch_misses']="touch命令未命中次数";
+$langs['cs_hash_power_level']="hash表等级";
+$langs['cs_hash_bytes']="当前hash表大小";
+$langs['cs_hash_is_expanding']="hash表正在扩展";
+$langs['cs_expired_unfetched']="已过期但未获取的对象数目";
+$langs['cs_evicted_unfetched']="已驱逐但未获取的对象数目";
 
 //con_settings.php
 $langs['sett_tit']="服务器SETTINGS信息";
@@ -177,8 +186,8 @@ $langs['sett_udpport']="UDP端口";
 $langs['sett_inter']="IP地址";
 $langs['sett_verbosity']="日志（0=none,1=som,2=lots）";
 $langs['sett_oldest']="最老对象过期时间";
-$langs['sett_evictions']="是否禁用LRU（on/off）";
-$langs['sett_domain_socket']="Socket域名";
+$langs['sett_evictions']="LRU可用（on/off）";
+$langs['sett_domain_socket']="Socketpath";
 $langs['sett_umask']="创建Socket的掩码";
 $langs['sett_growth_factor']="增长因子";
 $langs['sett_chunk_size']="chunk大小（key+value+flags）";
@@ -194,6 +203,10 @@ $langs['sett_auth_enabled_sasl']="是否启用SASL验证（yes/no）";
 $langs['sett_item_size_max']="数据最大尺寸";
 $langs['nosettings']="无法获取SETTINGS信息，可能由于无权限或版本不支持";
 $langs['confail_tokyo_cabinet']="无法获取信息，可能由于该连接为支持 memcache 协议的其他服务（如 Tokyo Tyrant 等）";
+$langs['sett_maxconns_fast']="达到最大连接时是否报错并关闭连接";
+$langs['sett_hashpower_init']="初始hash表等级";
+$langs['sett_slab_reassign']="是否开启slab重分配";
+$langs['sett_slab_automove']="slab自动重分配";
 
 //con_items.php
 $langs['items_tit']="服务器ITEMS信息";
@@ -204,10 +217,12 @@ $langs['items_number']="该slab中对象数（不包含过期对象）";
 $langs['items_age']="LRU队列中最老对象的过期时间";
 $langs['items_evicted']="LRU释放对象数";
 $langs['items_evicted_nonzero']="设置了非0时间的LRU释放对象数";
-$langs['items_evicted_time']="最后一次LRU秒数";
+$langs['items_evicted_time']="最后一次LRU释放的对象存在时间";
 $langs['items_outofmemory']="不能存储对象次数";
 $langs['items_tailrepairs']="修复slabs次数";
 $langs['items_reclaimed']="使用过期对象空间存储对象次数";
+$langs['items_expired_unfetched']="已过期但未获取的对象数目";
+$langs['items_evicted_unfetched']="已驱逐但未获取的对象数目";
 
 //con_sizes.php
 $langs['size_tit']="服务器SIZES信息";
@@ -224,8 +239,8 @@ $langs['slabs_chunks_per_page']="每个page的chunk数量";
 $langs['slabs_total_pages']="page数量";
 $langs['slabs_total_chunks']="chunk总数量（chunks_per_page*total_pages）";
 $langs['slabs_used_chunks']="已被分配的chunk数量";
-$langs['slabs_free_chunks']="剩余chunk数量";
-$langs['slabs_free_chunks_end']="分配完page浪费的chunk数量";
+$langs['slabs_free_chunks']="过期数据空出的chunk数";
+$langs['slabs_free_chunks_end']="从未被使用过的chunk数";
 $langs['slabs_mem_requested']="请求存储的字节数";
 $langs['slabs_get_hits']="get命令命中数";
 $langs['slabs_cmd_set']="set命令请求数";
@@ -236,6 +251,7 @@ $langs['slabs_cas_hits']="cas命令命中数";
 $langs['slabs_cas_badval']="cas数据类型错误数";
 $langs['noslabs_conp']="无法获取SLABS信息";
 $langs['noslabs_noitems']="无法获取SLABS信息，可能由于 memcache 中暂无数据";
+$langs['slabs_touch_hits']="touch命令命中数";
 
 //stats_monitor.php
 $langs['statsmo_tit']="统计信息监控";
@@ -279,6 +295,7 @@ $langs['hm_incrtit']="INCR 命中情况";
 $langs['hm_decrtit']="DECR 命中情况";
 $langs['hm_castit']="CAS 命中情况";
 $langs['hm_settit']="SET 命中情况";
+$langs['hm_touchtit']="TOUCH 命中情况";
 
 //show_monitor_hit.php
 $langs['hitmo_tit']="命中情况监控";
@@ -294,18 +311,19 @@ $langs['hitmo_miss']="未命中";
 //mem_get.php
 $langs['memg_tit']="GET 操作";
 $langs['memg_nokey']="请输入要查询的KEY";
-$langs['memg_delconfirm']="确定从memcache中立即删除？";
-$langs['memg_unserfail']="反序列化失败";
+$langs['memg_delconfirm']="确定从memcached中立即删除？";
+$langs['memg_unserfail']="反序列化失败，非序列化字符串";
 $langs['memg_inputnot']="查询多个KEY以 空格 分隔";
 $langs['memg_notget']="未查到";
 $langs['memg_getres']="查询结果";
-$langs['memg_resnot']="JSON字符串反序列化后以数组形式显示";
+$langs['memg_resnot']="数组/对象 序列化后显示，JSON字符串反序列化后以数组形式显示";
 $langs['memg_geterror']="错误：无法解压缩或反序列化，原因可能为设置了对应的flags位，但内容为非有效的压缩或序列化格式";
 $langs['memg_butvalue']="查询";
 $langs['memg_ser']="序列化";
 $langs['memg_unser']="反序列化";
-$langs['memg_tnum']="记录总数";
+$langs['memg_tnum']="获取总数";
 $langs['memg_updateres']="刷新";
+$langs['memg_reget']="编码指定错误，尝试转换编码中";
 
 //mem_set.php
 $langs['mems_tit']="写入数据";
@@ -343,7 +361,13 @@ $langs['itemt_slabtotalnum']="区块内共有记录";
 $langs['itemt_travtit']="遍历前";
 $langs['itemt_travtitnum']="条记录";
 $langs['itemt_getbut']="获取数据";
-$langs['itemt_numnott']="失效记录无法遍历";
+$langs['itemt_numnott']="由于memcached源码对cachedump命令的限制，最多遍历2M的key";
+$langs['itemt_moreinfo']="更多";
+$langs['itemt_closemore']="收起";
+$langs['itemt_size']="大小";
+$langs['itemt_expiretime']="永久有效";
+$langs['itemt_valuetype']="类型";
+$langs['itemt_charsettit']="字符集";
 
 //item_filtertrav.php
 $langs['itemft_tit']="条件遍历";
@@ -359,7 +383,7 @@ $langs['itemft_valuefiltertit']="对 VALUE 限定条件";
 $langs['itemft_filter']="正则表达式";
 $langs['itemft_perlonly']="仅支持 Perl兼容正则表达式";
 $langs['itemft_demo']="正则表达式示例";
-$langs['itemft_notforvalue']="对VALUE进行条件限定会对所有记录进行一次GET操作，消耗较大，影响命中统计的准确性，请确定需要该功能时再限定";
+$langs['itemft_notforvalue']="对VALUE进行条件限定会遍历所有数据，消耗较大，对于数组/对象等结构先序列化后匹配，请考虑序列化过程产生的额外字符对结果的影响";
 $langs['itemft_close']="关闭";
 $langs['itemft_demo1']="包含abc";
 $langs['itemft_demo2']="包含abc且不区分大小写";

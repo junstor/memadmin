@@ -2,14 +2,13 @@
 /**
  * get command
  */
-session_start();
-header("Cache-Control: no-cache, must-revalidate");
-date_default_timezone_set('Asia/Shanghai');
-error_reporting(0);
-define('IN_MADM', true);
-require_once('../include/class/memmanager.class.php');
+require_once('./appCommon.php');
 if (!isset($_GET['type']) || !isset($_GET['num']) || !isset($_POST['data']))
 	exit('Fail');
+if(!isset($_GET['charset']))
+	$cs='UTF-8';
+else
+	$cs=$_GET['charset'];
 $type = $_GET['type'];
 $num = $_GET['num'];
 $data = $_POST['data'];
@@ -24,11 +23,23 @@ $thekey = str_replace("_ _rd", "'", $data[0]['key']);
 $thekey = str_replace("_ _rx", "\\", $thekey);
 $keylist = explode(" ", $thekey);
 $list = $memm -> MemGet($keylist);
-foreach($list[1] as $key => $value) {
-	if($value==1) {
-		$list[0][$key]=serialize($list[0][$key]);
-	}
+$relist = array();
+$relist[0] = array();
+$relist[1] = array();
+foreach($list[0] as $key => $value) {
+	$newkey = urlencode($key);
+	$relist[0][$newkey]=array();
+	if(is_array($value))
+		$relist[0][$newkey][0]=serialize($value);
+	elseif(gettype($value)=='object') {
+		$relist[0][$newkey][0]=serialize($value);
+	} else
+		$relist[0][$newkey][0]=$value;
+	$relist[0][$newkey][1]=gettype($value);
 }
-echo json_encode($list);
-
+foreach($list[1] as $key => $value) {
+	$newkey = urlencode($key);
+	$relist[1][$newkey] = $value;
+}
+echo array2json($relist,$cs);
 ?>

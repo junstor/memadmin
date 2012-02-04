@@ -3,8 +3,11 @@ var curpage = null;
 var totalnum = null;
 var pagenum = null;
 var perpage = 50;
+var glo_charset=null;
+var char_arr=new Array('UTF-8','GBK','GB2312','GB18030','Latin-1');
+var rechar=null;
 
-$(function() {
+$(function() {	
     $("#selslabid").change(function() {
         window.location.href = "memmanager.php?type=" + type + "&num=" + num + "&action=itemtrav&slabid=" + $(this).val();
     });
@@ -70,13 +73,14 @@ $(function() {
                               pagenum = 1;
                             if (totalnum % perpage) 
                               pagenum = Math.floor(totalnum / perpage) + 1;
-                            else 
+                            else
                               pagenum = Math.floor(totalnum / perpage);
                             showpage(curpage);
                         }
                     }
                 });
             }
+            glo_charset=$("#selcharset").val();
         }
     });
     $("#conitemsle").change(function() {
@@ -85,6 +89,9 @@ $(function() {
     $("#conpselslabid").change(function() {
         window.location.href = "memmanager.php?type=" + type + "&num=" + num + "&action=itemtrav&conid=" + getconid + "&slabid=" + $(this).val();
     });
+
+	
+	
 });
 
 function delkey(key_md5) {
@@ -110,16 +117,17 @@ function delkey(key_md5) {
     }
 }
 function ser(key_md5) {
+	var cs=$("#pselcharset_"+key_md5).val();
     $.ajax({
         type: "POST",
         data: formatjsons(key_md5),
-        url: "../apps/FormatValue.php?action=ser&type=" + type + "&num=" + num,
+        url: "../apps/FormatValue.php?action=ser&type=" + type + "&num=" + num + "&charset=" + cs,
         success: function(d) {
             if (d == 'Fail' || d == 'NoLogin' || d == 'ConnectFail' || d == 'FormatFail') {
                 alert("Fail: \n" + d);
                 return;
             } else {
-                $(".key_" + key_md5).find(".thevalue").html(d);
+                $(".key_" + key_md5).find(".valuespan").html("<span class=\"valuespan\">"+d+"</span>");
                 $(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showunser").show();
                 $(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showser").hide();
             }
@@ -127,10 +135,11 @@ function ser(key_md5) {
     });
 }
 function unser(key_md5) {
+	var cs=$("#pselcharset_"+key_md5).val();
     $.ajax({
         type: "POST",
         data: formatjsons(key_md5),
-        url: "../apps/FormatValue.php?action=unser&type=" + type + "&num=" + num,
+        url: "../apps/FormatValue.php?action=unser&type=" + type + "&num=" + num + "&charset=" + cs,
         success: function(d) {
             if (d == 'Fail' || d == 'NoLogin' || d == 'ConnectFail') {
                 alert("Fail: \n" + d);
@@ -139,7 +148,7 @@ function unser(key_md5) {
                 alert(unserfail);
                 return;
             } else {
-                $(".key_" + key_md5).find(".thevalue").html(d);
+                $(".key_" + key_md5).find(".thevalue").html("<span class=\"valuespan\">"+d+"</span>");
                 $(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showser").show();
                 $(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showunser").hide();
             }
@@ -167,13 +176,13 @@ function showpage(page) {
         curpage = parseInt(page);
         $("#showres").html("");
         var begini = (curpage - 1) * perpage;
-        var keystr;
+        var keystr = "";
         if ((totalnum - begini) >= perpage) 
           endnum = perpage;
         else 
           endnum = totalnum - begini;
         for (var i = 0; i < endnum; i++) {
-            keystr += " " + glo_p[begini++][0];
+            keystr += " " + decodeURIComponent(glo_p[begini++][0]);
         }
         var kr = keystr.replace(/\'/g, '_ _rd');
         kr = kr.replace(/\\/g, '_ _rx');
@@ -182,7 +191,7 @@ function showpage(page) {
         $.ajax({
             type: "POST",
             data: p,
-            url: "../apps/MemGet.php?type=" + type + "&num=" + num,
+            url: "../apps/MemGet.php?type=" + type + "&num=" + num + "&charset=" + glo_charset,
             beforeSend: function() {
                 $("#showres").append("<div id=\"loading\"><img src=\"../images/loading.gif\" width=\"16\" height=\"16\" />" + loading + "</div>");
             },
@@ -193,33 +202,74 @@ function showpage(page) {
                     alert(d);
                     return;
                 } else {
-                    var p = eval("(" + d + ")");
+                    var p = eval("(" + d + ")"); 
                     begini = (curpage - 1) * perpage;
-                    for (var i = 0; i < endnum; i++) {
+                    for (var ni = 0; ni < endnum; ni++) {
                         var caldel = 0;
                         var kindex = begini++;
                         if (glo_p[kindex] != "___   ___memadmin__deleted") {
-                            if (typeof(p[0][glo_p[kindex][0]]) == 'undefined') {
-                                if (type == 'con') 
-                                  var showvalue = noexist;
-                                else 
-                                  var showvalue = conpnoexist;
-                                caldel = 1;
-                            } else if (p[0][glo_p[kindex][0]] === false) {
-                                var showvalue = valuefail;
-                                caldel = 1;
-                            } else 
-                              var showvalue = p[0][glo_p[kindex][0]];
-							  showvalue = htmlspecialchars(showvalue);
-							  glo_p[kindex][0]=htmlspecialchars(glo_p[kindex][0]);
-                            var strout = "<div class=\"showvalue key_" + $.md5(encodeURI(glo_p[kindex][0])) + "\"><input id=\"hideindex\" name=\"hideindex\" type=\"text\" value=\"" + kindex + "\"/><div class=\"keyandflags\"><div class=\"thekey\"><span class=\"keytit\">KEY : </span><span class=\"keycon\">" + glo_p[kindex][0] + "</span></div><div class=\"theflags\">Flags:　" + p[1][glo_p[kindex][0]] + "</div></div><div class=\"thevalue\"><span class=\"valuespan\">" + showvalue + "</span></div><div class=\"valuemenu\"><div class=\"menulist\"><span class=\"novaluet\">" + novaluetime + "：" + glo_p[kindex][1][1] + "</span><a class=\"showser t_hide\" href=\"javascript:ser('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + sert + "</a><a class=\"showunser\" href=\"javascript:unser('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + unsert + "</a><a class=\"updater\" href=\"javascript:updateres('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + updatetit + "</a>";
-                            if (caldel == 0) 
-                              strout += "<a class=\"delkey\" href=\"javascript:delkey('" + $.md5(encodeURI(glo_p[kindex][0])) + "');\">" + del + "</a>";
-                            else 
-                              strout += "<a class=\"delkey\" href=\"javascript:;\">" + del + "</a>";
-                            strout += "</div></div></div>";
+                        		var newkey = htmlspecialchars(glo_p[kindex][0]);
+                        		var md5_key=$.md5(encodeURI(newkey));	
+                        		if (typeof(p[0][glo_p[kindex][0]]) == 'undefined') {
+                        			var showvalue = "<span class=\"valuefail\">"+noexist+"</span>";
+                        			caldel = 1;
+                        			var valuetype = 'null';
+                        		} else {
+		                            if (typeof(p[0][glo_p[kindex][0]][0]) == 'undefined') {
+		                                if (type == 'con') 
+		                                  var showvalue = "<span class=\"valuefail\">"+noexist+"</span>";
+		                                else 
+		                                  var showvalue = "<span class=\"valuefail\">"+conpnoexist+"</span>";
+		                                caldel = 1;
+		                                var valuetype = 'null';
+		                            } else if (p[0][glo_p[kindex][0]][0] === false) {
+		                                var showvalue = "<span class=\"valuefail\">"+valuefail+"</span>";
+		                                caldel = 1;
+		                                var valuetype = 'null';
+		                            } else {
+		                            	try {
+		                            		var showvalue = htmlspecialchars((decodeURIComponent(p[0][glo_p[kindex][0]][0])));
+		                            	} catch(e) {
+		                            		if(rechar === null)
+		                            			rechar = new Array();
+		                            		rechar.push(md5_key);
+		                            		var showvalue = recharnot;
+		                            	}
+		                            	var valuetype=p[0][glo_p[kindex][0]][1];
+		                            }
+                        	}
+							nohskey=glo_p[kindex][0];           	
+							if (caldel == 0) 
+							    var delbutton = "<a class=\"delkey\" href=\"javascript:delkey('" + md5_key + "');\">" + del + "</a>";
+	                        else 
+	                        	var delbutton = "<a class=\"delkey\" href=\"javascript:;\">" + del + "</a>";
+							var strout = "<div class=\"showvalue key_" + md5_key + "\"><input id=\"hideindex\" name=\"hideindex\" type=\"text\" value=\"" + kindex + "\"/><div class=\"keyandflags\"><div class=\"thekey\"><span class=\"keytit\">KEY : </span><span class=\"keycon\">" + decodeURIComponent(glo_p[kindex][0]) + "</span></div><div class=\"theflags\">";
+                            strout+=charset+"：<select name=\"pselcharset\" id=\"pselcharset_"+md5_key+"\" class=\"selcharset_c\" pmd5=\""+md5_key+"\">";
+                            for(var i=0;i<char_arr.length;i++) {
+                            	if(char_arr[i]===glo_charset)
+                            		strout+="<option id=\""+char_arr[i]+"\" value=\""+char_arr[i]+"\" selected=\"selected\">"+char_arr[i]+"</option>";
+                            	else
+                            		strout+="<option id=\""+char_arr[i]+"\" value=\""+char_arr[i]+"\">"+char_arr[i]+"</option>";
+                            }
+                            if(glo_p[kindex][1][1]=="noexpire")
+                            	glo_p[kindex][1][1]=noexpire;
+                            if(caldel === 0)
+                            	var itemdata = "<span class=\"downflags\">Flags:<span class=\"flagsvalues\">"+p[1][nohskey]+"</span></span><span class=\"downsize\">"+valuetypetit+":<span class=\"flagsvalues\">"+valuetype+"</span></span><span class=\"downsize\">"+itemsize+":<span class=\"flagsvalues\">"+glo_p[kindex][1][0]+"&nbsp;byte</span></span><span class=\"downexpire\">"+novaluetime+":<span class=\"flagsvalues\">"+glo_p[kindex][1][1]+"</span></span>";
+                            else
+                            	var itemdata = "<span class=\"downflags\">Flags:<span class=\"flagsvalues\">null</span></span><span class=\"downsize\">"+valuetypetit+":<span class=\"flagsvalues\">"+valuetype+"</span></span><span class=\"downsize\">"+itemsize+":<span class=\"flagsvalues\">null</span></span><span class=\"downexpire\">"+novaluetime+":<span class=\"flagsvalues\">null</span></span>";
+                            strout+="</select></div></div><div class=\"thevalue\"><span class=\"valuespan\">" + showvalue + "</span></div><div class=\"valuemenu\"><div class=\"menulist\">"+itemdata+"<a class=\"showser t_hide\" href=\"javascript:ser('" + md5_key + "');\">" + sert + "</a><a class=\"showunser\" href=\"javascript:unser('" + md5_key + "');\">" + unsert + "</a><a class=\"updater\" href=\"javascript:updateres('" + md5_key + "');\">" + updatetit + "</a>"+delbutton+"</div></div>";
                             $("#showres").append(strout);
                         }
+                    }
+                    $(".selcharset_c").change(function() {
+                    	changecs($(this).val(),$(this).attr('pmd5'));
+                	});
+                    if(rechar !== null) {
+	                    for(k in rechar) {
+	                    	$("#pselcharset_"+rechar[k]).val('UTF-8'); 
+	                    	changecs('UTF-8',rechar[k]);
+	                    }
+	                    rechar = null;
                     }
                 }
                 paging();
@@ -291,5 +341,12 @@ function updateres(key_md5) {
 	if($(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showser").css('display')=='none')
 		ser(key_md5);
 	else if($(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showunser").css('display')=='none')	
-		unser(key_md5);		
+		unser(key_md5);
+}
+
+function changecs(cs,key_md5) {
+	if($(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showser").css('display')=='none')
+		ser(key_md5);
+	else if($(".key_" + key_md5).find(".valuemenu").find(".menulist").find(".showunser").css('display')=='none')	
+		unser(key_md5);
 }

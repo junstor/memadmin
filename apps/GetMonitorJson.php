@@ -2,12 +2,7 @@
 /**
  * return the monitor data
  */
-session_start();
-header("Cache-Control: no-cache, must-revalidate");
-date_default_timezone_set('Asia/Shanghai');
-error_reporting(0);
-define('IN_MADM', true);
-require_once('../include/class/memmanager.class.php');
+require_once('./appCommon.php');
 $type = $_SESSION['MADM_SESSION_KEY']['monitor'][0]['type'];
 $num = $_SESSION['MADM_SESSION_KEY']['monitor'][0]['num'];
 $memm = new MEMMANAGER();
@@ -157,6 +152,11 @@ else {
 							$rlist['cas']['cas_hits'] = $list['cas_hits'];
 							$rlist['cas']['cas_misses'] = $list['cas_misses'];
 						} 
+						if ($value == 'touch') {
+							$rlist['touch'] = array();
+							$rlist['touch']['touch_hits'] = $list['touch_hits'];
+							$rlist['touch']['touch_misses'] = $list['touch_misses'];
+						}
 					} 
 					$rlist['__aftime__'] = date("H:i:s");
 					$rlist['__rtype__'] = 'memcache';
@@ -223,6 +223,11 @@ else {
 							$rlist['cas']['cas_hits'] = $list[$conid]['cas_hits'];
 							$rlist['cas']['cas_misses'] = $list[$conid]['cas_misses'];
 						} 
+						if ($value == 'touch') {
+							$rlist['touch'] = array();
+							$rlist['touch']['touch_hits'] = $list[$conid]['touch_hits'];
+							$rlist['touch']['touch_misses'] = $list[$conid]['touch_misses'];
+						}
 					} 
 					$rlist['__aftime__'] = date("H:i:s");
 					$rlist['__rtype__'] = 'memcache';
