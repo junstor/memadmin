@@ -2,14 +2,15 @@
 *{margin:0px; padding:0px;}
 body{font:'Courier New',Arial, sans-serif; font-size:14px;}
 #l_main{text-align:center;}
-#l_login{width:350px;height:330px; border: #999 solid 1px; margin:100px auto 0px auto; text-align:center;}
+#l_login{width:350px;height:auto;border: #999 solid 1px; margin:100px auto 0px auto; text-align:center;}
 #l_logo{padding:10px 0px 0px 10px; float:left;}
-#l_in{width:350px;clear:both; position:relative;top:30px;}
+#l_in{width:350px;clear:both;padding-top:30px;}
 #l_but{width:60px;height:30px;}
 #l_in p span{display:inline-block;width:70px;}
 #l_in_user,#l_in_pass{width:180px;height:20px;}
 .l_in_p{margin-bottom:15px;}
-#l_info{position:relative;top:50px;width:270px;margin:0 auto; text-align:left;}
+.l_in_p span{margin-right:5px;}
+#l_info{width:270px;margin:0 auto; text-align:left;margin-bottom:20px;}
 #l_info li{margin-bottom:10px;}
-#l_show_callbak{margin-top:15px; color:#F00; visibility:hidden;}
+#l_show_callbak{margin-top:15px; color:#F00; visibility:hidden;margin-bottom:10px;}
 #nojs{color:#F00; margin-top:50px; font-weight:bold;}

@@ -71,7 +71,8 @@ class MEMADMIN {
 	 * show the views
 	 */
 	function show_views() {
-		session_start();
+		if(!ini_get('session.auto_start'))
+			session_start();
 		if (isset($_GET['action']) && $_GET['action'] == 'login') {
 			if ($this -> check()) {
 				$this -> set_session();

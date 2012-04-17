@@ -1,6 +1,6 @@
-MemAdmin v 1.0.9
+MemAdmin v 1.0.10
  
- 2012/2/4
+ 2012/4/17
 
  Installation :
 
@@ -14,6 +14,9 @@ MemAdmin v 1.0.9
 
  Changelog : 
 
+ v1.0.10 -- 2012/4/17
+   * fix a bug when session.auto_start=1
+   
  v1.0.9 -- 2012/2/4
    * fix five bugs
    * Add charset support

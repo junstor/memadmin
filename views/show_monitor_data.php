@@ -1,5 +1,6 @@
 <?php
-	session_start();
+	if(!ini_get('session.auto_start'))
+		session_start();
 	error_reporting(0);
 	define('IN_MADM', TRUE);
 	require_once("../langs/".$_SESSION["MADM_SESSION_KEY"]['lang'].".php");	

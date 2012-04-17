@@ -2,7 +2,8 @@
 /**
  * set list information into session
  */
-session_start();
+if(!ini_get('session.auto_start'))
+    session_start();
 try {
 	if (isset($_SESSION) && array_key_exists("MADM_SESSION_KEY", $_SESSION)) {
 		$list = $_POST['data'];
