@@ -87,7 +87,7 @@ if ($type == 'con') {
 			if($t==$stime)
 				$value[1] = "noexpire";
 			else
-				$value[1] = date('Y-m-d H:m:s',$t);
+				$value[1] = date('Y-m-d H:i:s',$t);
 			$relist['res'][] = array(urlencode($key), $value);
 		} 
 	} 
@@ -140,7 +140,7 @@ if ($type == 'con') {
 			if($t==$stime)
 				$value[1] = "noexpire";
 			else
-				$value[1] = date('Y-m-d H:m:s',$t);
+				$value[1] = date('Y-m-d H:i:s',$t);
 			$relist['res'][] = array(urlencode($key), $value);
 		} 
 	} 
