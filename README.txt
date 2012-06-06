@@ -1,6 +1,6 @@
-MemAdmin v 1.0.10
+MemAdmin v 1.0.11
  
- 2012/4/17
+ 2012/6/6
 
  Installation :
 
@@ -13,6 +13,8 @@ MemAdmin v 1.0.10
  BUGs Report : junstor@gmail.com
 
  Changelog : 
+ v1.0.11 -- 2012/6/6
+   * fix expire time bug
 
  v1.0.10 -- 2012/4/17
    * fix a bug when session.auto_start=1
