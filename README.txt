@@ -12,7 +12,10 @@ MemAdmin v 1.0.11
 
  BUGs Report : junstor@gmail.com
 
- Changelog : 
+ Changelog :
+ v1.0.12 -- 2012/8/15
+   * fix a refer bux
+
  v1.0.11 -- 2012/6/6
    * fix expire time bug
 
