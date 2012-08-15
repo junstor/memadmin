@@ -289,8 +289,9 @@ class MEMMANAGER {
 	 * @param string $key key
 	 * @return array 
 	 */
-	function MemGet($key) {
-		$list = @$this -> memcache_obj -> get($key, &$flags);
+     function MemGet($key) {
+        $flags = "";
+		$list = @$this -> memcache_obj -> get($key, $flags);
 		$rlist = array();
 		$rlist[0] = array();
 		$rlist[1] = array();
