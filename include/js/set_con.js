@@ -284,7 +284,7 @@ $(function() {
     });
     $("#loadlist").click(function() {
         if (confirm(con_loadnotice)) {
-            json2data('apps/get_list.php');
+            json2data('apps/GetList.php');
             savelisttime();
         }
     });
